@@ -62,4 +62,36 @@ public class Final_Project extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 	}
+	private void setFocus() {
+		b_add.requestFocus();
+	}
+
+	public void actionPerformed(ActionEvent e) {
+
+		if (e.getSource() == b_add) {
+
+			// add a new coffee:
+			BearCoffee coffee = new BearCoffee();
+			totalPrice += coffee.price;
+			data.addElement(coffee);
+
+		} else if (e.getSource() == b_remove) {
+
+			// try to remove pizza:
+			int i = CoffeeList.getSelectedIndex();
+			BearCoffee selectedCoffee = null;
+			
+			if (i > -1) {
+				// valid selection:
+				selectedCoffee = data.getElementAt(i);
+				totalPrice -= selectedCoffee.price;
+				data.remove(i);
+				
+			} else {
+				// error, no pizza selected:
+				JOptionPane.showMessageDialog(this, 
+						"Please select a coffee to remove!!!", 
+						"Attention", 
+						JOptionPane.ERROR_MESSAGE); 
+			}
 }
